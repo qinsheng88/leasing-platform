@@ -1,5 +1,6 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -13,40 +14,39 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	// 底部菜单
 	"tabBar": {
 		"color": "#C0C4CC",
-		"selectedColor": "#fa436a",
+		"selectedColor": "#00C658",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/tab-home.png",
-				"selectedIconPath": "static/tab-home-current.png",
+				"iconPath": "static/images/tabar-home-gray.png",
+				"selectedIconPath": "static/images/tabar-home-light.png",
 				"text": "首页"
 			},
 			{
 				"pagePath": "pages/category/category",
-				"iconPath": "static/tab-cate.png",
-				"selectedIconPath": "static/tab-cate-current.png",
+				"iconPath": "static/images/tabar-trends-gray.png",
+				"selectedIconPath": "static/images/tabar-trends-light.png",
 				"text": "动态"
 			},
 			{
 				"pagePath": "pages/cart/cart",
-				"iconPath": "static/tab-cart.png",
-				"selectedIconPath": "static/tab-cart-current.png",
+				"iconPath": "static/images/tabar-task-gray.png",
+				"selectedIconPath": "static/images/tabar-task-light.png",
 				"text": "任务中心"
 			},
 			{
 				"pagePath": "pages/info/info",
-				"iconPath": "static/index-bottom-gray.png",
-				"selectedIconPath": "static/index-bottom-light.png",
+				"iconPath": "static/images/tabar-message-gray.png",
+				"selectedIconPath": "static/images/tabar-message-light.png",
 				"text": "消息"
 			},
 			{
 				"pagePath": "pages/user/user",
-				"iconPath": "static/tab-my.png",
-				"selectedIconPath": "static/tab-my-current.png",
+				"iconPath": "static/images/tabar-mine-gray.png",
+				"selectedIconPath": "static/images/tabar-mine-light.png",
 				"text": "我的"
 			}
 		]
