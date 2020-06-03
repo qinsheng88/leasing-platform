@@ -19,6 +19,11 @@ $uni-color-primary: #007aff;
 $uni-color-success: #4cd964;
 $uni-color-warning: #f0ad4e;
 $uni-color-error: #dd524d;
+$uni-color-dark: #303133;
+$uni-color-base: #606266;
+$uni-color-light: #909399;
+$uni-color-disabled: #C0C4CC;
+$uni-color-spec: #4399fc;
 
 /* 文字基本颜色 */
 $uni-text-color:#333;//基本色
@@ -43,7 +48,8 @@ $uni-font-size-sm:24rpx;
 $uni-font-size-base:28rpx;
 $uni-font-size-lg:32rpx;
 
-/* 图片尺寸 */
+
+/* 图片尺寸 */  
 $uni-img-size-sm:40rpx;
 $uni-img-size-base:52rpx;
 $uni-img-size-lg:80rpx;

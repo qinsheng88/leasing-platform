@@ -1,0 +1,33 @@
+{
+  "errorCode": "000",
+  "errorMsg": "成功",
+  "data": {
+    "carouse": [
+      {
+        "src": "/static/ad/ad-1.jpg",
+        "background": "rgb(203, 87, 60)"
+      },
+      {
+        "src": "/static/ad/ad-2.jpg",
+        "background": "rgb(205, 215, 218)"
+      },
+      {
+        "src": "/static/ad/ad-3.png",
+        "background": "rgb(183, 73, 69)"
+      },
+      {
+        "src": "/static/ad/ad-4.jpg",
+        "background": "rgb(203, 87, 60)"
+      },
+      {
+        "src": "/static/ad/ad-5.png",
+        "background": "rgb(205, 215, 218)"
+      },
+      {
+        "src": "/static/ad/ad-6.png",
+        "background": "rgb(183, 73, 69)"
+      }
+    ]
+  }
+}
+

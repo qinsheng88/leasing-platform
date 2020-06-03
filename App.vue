@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: huangziting
+ * @Date: 2020-06-01 16:47:15
+ * @LastEditTime: 2020-06-02 18:11:36
+--> 
 <script>
 	export default {
 		onLaunch: function() {

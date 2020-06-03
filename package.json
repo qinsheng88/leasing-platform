@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "mocker-api": "^2.1.0"
+  }
+}

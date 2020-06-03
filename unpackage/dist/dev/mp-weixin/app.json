@@ -1,6 +1,10 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/home/home",
+    "pages/trends/trends",
+    "pages/taskCenter/taskCenter",
+    "pages/message/message",
+    "pages/mine/mine"
   ],
   "subPackages": [],
   "window": {
@@ -16,36 +20,37 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "iconPath": "static/images/tabar-home-gray.png",
         "selectedIconPath": "static/images/tabar-home-light.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/category/category",
+        "pagePath": "pages/trends/trends",
         "iconPath": "static/images/tabar-trends-gray.png",
         "selectedIconPath": "static/images/tabar-trends-light.png",
         "text": "动态"
       },
       {
-        "pagePath": "pages/cart/cart",
+        "pagePath": "pages/taskCenter/taskCenter",
         "iconPath": "static/images/tabar-task-gray.png",
         "selectedIconPath": "static/images/tabar-task-light.png",
         "text": "任务中心"
       },
       {
-        "pagePath": "pages/info/info",
+        "pagePath": "pages/message/message",
         "iconPath": "static/images/tabar-message-gray.png",
         "selectedIconPath": "static/images/tabar-message-light.png",
         "text": "消息"
       },
       {
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/mine/mine",
         "iconPath": "static/images/tabar-mine-gray.png",
         "selectedIconPath": "static/images/tabar-mine-light.png",
         "text": "我的"
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap69.json"
 }

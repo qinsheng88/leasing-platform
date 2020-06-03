@@ -2,13 +2,12 @@
  * @Descripttion: 
  * @version: 
  * @Author: huangziting
- * @Date: 2020-06-01 19:04:27
- * @LastEditTime: 2020-06-02 07:56:21
+ * @Date: 2020-06-01 19:03:32
+ * @LastEditTime: 2020-06-02 07:58:55
 --> 
-
 <template>
   <div class="container">
-    Hello Trends
+    Hello taskCenter!
   </div>
 </template>
 

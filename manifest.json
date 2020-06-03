@@ -75,4 +75,19 @@
     "uniStatistics": {  
         "enable": false
     }
+	// "h5": {
+	// 	"devServer": {
+	// 		"host": "localhost",
+	// 		"port": "8080",
+	// 		"proxy": {
+	// 			"/FanChan/FYXXB/GetIndexGpList": {
+	// 				"target": "http://113.16.255.12:13009/"
+	// 				// "pathRewrite": {
+	// 				// 	"^/api": ""
+	// 				// }
+	// 			}
+	// 		}
+	// 	}
+	// }
+	
 }
