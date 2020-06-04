@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-01 18:52:08
- * @LastEditTime: 2020-06-04 10:46:49
+ * @LastEditTime: 2020-06-04 13:35:55
 --> 
 <template>
   <view>
@@ -108,12 +108,14 @@
         titleNViewBackground: '',
         swiperCurrent: 0,
         swiperLength: 0,
+
         info: ''
       }
     },
 
     onLoad() {
-      this.loadDataDemo();
+      //this.loadDataDemo();
+      this.getCarouselList();
     },
     
     methods: {
@@ -130,6 +132,20 @@
           console.log(err)
         })
       },
+
+      // 获取轮播图数据
+      getCarouselList() {
+        let url = '/api/carouseList'
+        http.get(url, {})
+          .then((res) => {
+            this.carouselList = res.data.carouse
+            this.titleNViewBackground = this.carouselList[0].background;
+            this.swiperLength = this.carouselList.length;
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      },
       
       //轮播图切换修改背景色
       swiperChange(e) {
@@ -138,20 +154,6 @@
         this.titleNViewBackground = this.carouselList[index].background;
       },
       
-      navgator() {
-        uni.navigateTo({
-          url:'./hello',
-          complate: function(res) {
-            console.log(res)
-          },
-          fail: function(err) {
-            console.log(err)
-          }
-        })
-        // uni.switchTab({
-        //       url: '/pages/message/message'
-        // })
-      }
     }
   }
 </script>
@@ -164,6 +166,7 @@
 	.carousel {
 		width: 100%;
 		height: 350rpx;
+    border-radius: 20rpx;
 
 		.carousel-item {
 			width: 100%;
@@ -213,15 +216,15 @@
 			position:relative;
 			z-index:5;
 			border-radius:16rpx 16rpx 0 0;
-			margin-top:-20rpx;
 		}
 		.carousel-section{
-			padding: 0;
+			padding: 20px;
 			.titleNview-placing {
 				padding-top: 0;
 				height: 0;
 			}
 			.carousel{
+        box-shadow: 0 0 30px rgba($color: #1b9a1f, $alpha: 1.0);
 				.carousel-item{
 					padding: 0;
 				}

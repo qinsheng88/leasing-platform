@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-02 08:35:47
- * @LastEditTime: 2020-06-04 10:49:01
+ * @LastEditTime: 2020-06-04 11:50:45
  */ 
 import context from '../context'
 
@@ -53,7 +53,7 @@ class HttpFactory {
   }
 
   // promise all
-  
+
 }
 
 export default new HttpFactory()
