@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-01 18:52:08
- * @LastEditTime: 2020-06-03 08:54:15
+ * @LastEditTime: 2020-06-04 10:46:49
 --> 
 <template>
   <view>
@@ -85,12 +85,17 @@
     </view>
     <!-- 好房优选 结束 -->
 
+    <!-- 测试服务端数据 开始 -->
+    <view>{{info}}</view>
+    <!-- 测试服务端数据 结束 -->
+
+
   </view>
 </template>
 
 <script>
   import context from '../../context/'
-  import constant from '../../constant';
+  const { http } = context.factory
   
   export default {
     components: {
@@ -102,52 +107,28 @@
         carouselList: [], // 轮播图数组
         titleNViewBackground: '',
         swiperCurrent: 0,
-        swiperLength: 0
+        swiperLength: 0,
+        info: ''
       }
     },
 
     onLoad() {
-      //this.loadData();
-
-      uni.request({
-        url: '/api/FanChan/FYXXB/GetIndexGpList',
-        // data: {
-        //     text: new Date()
-        // },
-        dataType:"json",
-        method: 'POST',
-        header: {
-            'custom-header': 'hello' //自定义请求头信息
-        },
-        success: (res) => {
-          let carouselList = res.data.carouse;
-          this.titleNViewBackground = carouselList[0].background;
-          this.swiperLength = carouselList.length;
-          this.carouselList = carouselList;
-        }
-      });
+      this.loadDataDemo();
     },
     
     methods: {
-      /**
-       * 请求静态数据只是为了代码不那么乱
-       * 分次请求未作整合
-       */
-      loadData() {
-        let _that = this;
-        _that.lpFactory.http.postSync(
-          {
-	          'content-type': 'application/json', 
-          }, 
-          _that.lpConstant.url.carouselUrl, 
-          {})
-          .then((res)=>{
-            debugger;
-            console.log(res)
-        });
-        // this.titleNViewBackground = carouselList[0].background;
-        // this.swiperLength = carouselList.length;
-        // this.carouselList = carouselList;
+
+      // 请求数据DEMO
+      loadDataDemo() {
+        let url = '/api/FanChan/FYXXB/GetPageListAllSearch_fyzs'
+        http.get(url, {
+          pagination: {"page": 1,"rows": 10,"sidx":"up_at", "sord":"desc"},
+          queryJson: {"status": 1,"category": 2,"up_status": 2}
+        }).then((res) => {
+          this.info = res.data.info
+        }).catch((err) => {
+          console.log(err)
+        })
       },
       
       //轮播图切换修改背景色
@@ -156,7 +137,21 @@
         this.swiperCurrent = index;
         this.titleNViewBackground = this.carouselList[index].background;
       },
-        
+      
+      navgator() {
+        uni.navigateTo({
+          url:'./hello',
+          complate: function(res) {
+            console.log(res)
+          },
+          fail: function(err) {
+            console.log(err)
+          }
+        })
+        // uni.switchTab({
+        //       url: '/pages/message/message'
+        // })
+      }
     }
   }
 </script>

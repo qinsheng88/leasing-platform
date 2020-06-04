@@ -3,36 +3,33 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-02 08:35:47
- * @LastEditTime: 2020-06-02 13:13:34
+ * @LastEditTime: 2020-06-04 10:49:01
  */ 
+import context from '../context'
+
+const GET_METHOD  = 'GET'
+const POST_METHOD = 'POST'
+
 class HttpFactory {
   constructor() {}
 
-  // http get method
-  getSync(_httpHeader, _url, _data) {
-    return new Promise((resolve, reject) => {
-      uni.request({
-        url: _url,
-        method: 'GET',
-        header: _httpHeader,
-        data: _data,
-        success(res) {
-          resolve(res)
-        },
-        fail(err) {
-          reject(err)
-        }
-      })
-    })
+  _getHeader = function() {
+    return {
+      app_id: context.constant.app.appId,
+      transaction_id: context.utils.core.getWXuuid(),
+      req_time: context.utils.date.getDateYYYYMMDDHHMISS(),
+      sign: '1234567',
+      user_id: '-1',
+      // cookie: '_leasing_token_=' + uni.getStorageSync('token')
+    }
   }
 
-  // http post method
-  postSync(_httpHeader, _url, _data) {
+  _request = function(_url, _data, _httpHeader, _method) {
     return new Promise((resolve, reject) => {
       uni.request({
         url: _url,
-        method: 'POST',
-        header: _httpHeader,
+        method: _method,
+        header: {...this._getHeader(), ..._httpHeader},
         data: _data,
         success(res) {
           resolve(res)
@@ -42,7 +39,21 @@ class HttpFactory {
         }
       })
     })
+    
   }
+
+  // get method
+  get = function(_url, _data, _httpHeader) {
+    return this._request(_url, _data, _httpHeader, GET_METHOD)
+  }
+
+  // post method
+  post = function(_url, _httpHeader, _data) {
+    return this._request(_url, _data, _httpHeader, POST_METHOD)
+  }
+
+  // promise all
+  
 }
 
 export default new HttpFactory()

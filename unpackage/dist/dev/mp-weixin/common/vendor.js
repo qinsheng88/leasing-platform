@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -1563,7 +1563,552 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-/* 2 */
+
+/***/ 10:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 11:
+/*!*******************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/context/index.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+var _constant = _interopRequireDefault(__webpack_require__(/*! ../constant */ 12));
+var _factory = _interopRequireDefault(__webpack_require__(/*! ../factory */ 14));
+var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var
+Context =
+function Context() {_classCallCheck(this, Context);};var _default =
+
+
+
+{
+  constant: _constant.default,
+  utils: _utils.default,
+  factory: _factory.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 12:
+/*!********************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/constant/index.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+var _UrlConstant = _interopRequireDefault(__webpack_require__(/*! ./UrlConstant */ 13));
+var _AppConstant = _interopRequireDefault(__webpack_require__(/*! ./AppConstant */ 52));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
+                                                                                                                                                                   * @Descripttion: 静态变量输出接口 UrlConstant: url常量， AppConstant：app常量
+                                                                                                                                                                   * @version: 
+                                                                                                                                                                   * @Author: huangziting
+                                                                                                                                                                   * @Date: 2020-06-02 09:00:32
+                                                                                                                                                                   * @LastEditTime: 2020-06-03 18:47:24
+                                                                                                                                                                   */var _default = { url: _UrlConstant.default, app: _AppConstant.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 13:
+/*!**************************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/constant/UrlConstant.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /*
+                                                                                                      * @Descripttion: url常理
+                                                                                                      * @version: 
+                                                                                                      * @Author: huangziting
+                                                                                                      * @Date: 2020-06-02 09:02:48
+                                                                                                      * @LastEditTime: 2020-06-02 13:15:06
+                                                                                                      */
+// const baseUrl = 'https://app.demo.winqi.cn/'; 
+var baseUrl = '/';
+
+
+/**
+                    * 主页数据请求URL--开始: 
+                    */
+// 轮播图
+var carouselUrl = baseUrl + 'mock/carouse.json';
+
+/**
+                                                  * 主页数据请求URL--开始: 
+                                                  */var _default =
+
+{
+  carouselUrl: carouselUrl };exports.default = _default;
+
+/***/ }),
+
+/***/ 14:
+/*!*******************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/factory/index.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+var _HttpFactory = _interopRequireDefault(__webpack_require__(/*! ./HttpFactory */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
+                                                                                                                                                                   * @Descripttion: 工厂类输出接口
+                                                                                                                                                                   * @version: 
+                                                                                                                                                                   * @Author: huangziting
+                                                                                                                                                                   * @Date: 2020-06-02 08:35:31
+                                                                                                                                                                   * @LastEditTime: 2020-06-02 08:57:17
+                                                                                                                                                                   */var _default = { http: _HttpFactory.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 15:
+/*!*************************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/factory/HttpFactory.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+var _constant = _interopRequireDefault(__webpack_require__(/*! ../constant */ 12));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+HttpFactory = /*#__PURE__*/function () {
+  function HttpFactory() {_classCallCheck(this, HttpFactory);}
+
+  // get default http header
+  _createClass(HttpFactory, [{ key: "getHeader", value: function getHeader() {
+      return {
+        app_id: api.appInfo.appId,
+        transaction_id: wxuuid(),
+        req_time: getDateYYYYMMDDHHMISS(),
+        sign: '1234567',
+        user_id: '-1',
+        cookie: '_java110_token_=' + wx.getStorageSync('token') };
+
+    }
+    // http get method
+  }, { key: "get", value: function get(_url, _httpHeader, _data) {var _this = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: _url,
+          method: 'GET',
+          header: _objectSpread({}, _this.getHeader(), {}, _httpHeader),
+          data: _data,
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(err) {
+            reject(err);
+          } });
+
+      });
+    }
+
+    // http post method
+  }, { key: "post", value: function post(_url, _httpHeader, _data) {var _this2 = this;
+      return new Promise(function (resolve, reject) {
+        uni.request({
+          url: _url,
+          method: 'POST',
+          header: _objectSpread({}, _this2.getHeader(), {}, _httpHeader),
+          data: _data,
+          success: function success(res) {
+            resolve(res);
+          },
+          fail: function fail(err) {
+            reject(err);
+          } });
+
+      });
+    } }]);return HttpFactory;}();var _default =
+
+
+new HttpFactory();exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 16:
+/*!*****************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/utils/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+var _DateUtil = _interopRequireDefault(__webpack_require__(/*! ./DateUtil */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
+                                                                                                                                                             * @Descripttion: 工具类输出接口
+                                                                                                                                                             * @version: 
+                                                                                                                                                             * @Author: huangziting
+                                                                                                                                                             * @Date: 2020-06-02 10:37:58
+                                                                                                                                                             * @LastEditTime: 2020-06-02 11:45:41
+                                                                                                                                                             */var _default = { date: _DateUtil.default };exports.default = _default;
+
+/***/ }),
+
+/***/ 17:
+/*!********************************************************!*\
+  !*** D:/web/uniApp/leasing-platform/utils/DateUtil.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /*
+                                                                                                      * @Descripttion: 时间工具类，访问通过Java110Context 去访问，请不要直接引入该文件
+                                                                                                      * @version: 
+                                                                                                      * @Author: huangziting
+                                                                                                      * @Date: 2020-06-02 10:39:55
+                                                                                                      * @LastEditTime: 2020-06-02 11:44:26
+                                                                                                      */
+
+
+/**
+                                                                                                          * @desc: 格式化时间
+                                                                                                          * @return: eg: '2018/04/09 21:31:00'
+                                                                                                          * @param {Date对象} date 
+                                                                                                          */
+var formatTime = function formatTime(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+};
+
+/**
+    * @desc: 格式化日期
+    * @return: eg: '2018/04/09 21:31:00'
+    * @param {Date对象} date 
+    */
+var formatDate = function formatDate(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  return [year, month, day].map(formatNumber).join('-');
+};
+
+//字符串转日期格式，strDate要转为日期格式的字符串 
+var getDate = function getDate(strDate) {
+  var st = strDate;
+  var a = st.split(" "); //这个根据你的字符串决定，如果中间为T则改T
+
+  var b = a[0].split("-");
+  var c = a[1].split(":");
+  var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2]);
+  return date;
+};
+
+
+/**
+    * @desc: 格式化数字
+    * @return: n > 10 [eg: 12] => 12 | n < 10 [eg: 3] => '03'
+    * @param {*} n 
+    */
+var formatNumber = function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+};
+
+var getDateYYYYMMDDHHMISS = function getDateYYYYMMDDHHMISS() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  if (month < 10) {
+    month = '0' + month;
+  }
+
+  if (day < 10) {
+    day = '0' + day;
+  }
+
+  if (hour < 10) {
+    hour = '0' + hour;
+  }
+
+  if (minute < 10) {
+    minute = '0' + minute;
+  }
+
+  if (second < 10) {
+    second = '0' + second;
+  }
+
+  return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
+};
+
+var addYear = function addYear(_date, _year) {
+  var year = _date.getFullYear() + _year; //获取当前年份
+  var mon = _date.getMonth(); //获取当前月份
+  var da = _date.getDate(); //获取当前日
+  var h = _date.getHours(); //获取小时
+  var m = _date.getMinutes(); //获取分钟
+  var s = _date.getSeconds(); //获取秒
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};
+
+var addMonth = function addMonth(_date, _month) {
+  var year = _date.getFullYear(); //获取当前年份
+  var mon = _date.getMonth() + _month; //获取当前月份
+  var da = _date.getDate(); //获取当前日
+  var h = _date.getHours(); //获取小时
+  var m = _date.getMinutes(); //获取分钟
+  var s = _date.getSeconds(); //获取秒
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};
+
+var addDay = function addDay(_date, _day) {
+  var year = _date.getFullYear(); //获取当前年份
+
+
+  var mon = _date.getMonth(); //获取当前月份
+
+
+  var da = _date.getDate() + _day; //获取当前日
+
+
+  var h = _date.getHours(); //获取小时
+
+
+  var m = _date.getMinutes(); //获取分钟
+
+
+  var s = _date.getSeconds(); //获取秒
+
+
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};
+
+var addHour = function addHour(_date, _hour) {
+  var year = _date.getFullYear(); //获取当前年份
+
+
+  var mon = _date.getMonth(); //获取当前月份
+
+
+  var da = _date.getDate(); //获取当前日
+
+
+  var h = _date.getHours() + _hour; //获取小时
+
+
+  var m = _date.getMinutes(); //获取分钟
+
+
+  var s = _date.getSeconds(); //获取秒
+
+
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};
+
+var addMinutes = function addMinutes(_date, _minute) {
+  var year = _date.getFullYear(); //获取当前年份
+  var mon = _date.getMonth(); //获取当前月份
+  var da = _date.getDate(); //获取当前日
+  var h = _date.getHours(); //获取小时
+  var m = _date.getMinutes() + _minute; //获取分钟
+  var s = _date.getSeconds(); //获取秒
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};
+
+var addSeconds = function addSeconds(_date, _second) {
+  var year = _date.getFullYear(); //获取当前年份
+  var mon = _date.getMonth(); //获取当前月份
+  var da = _date.getDate(); //获取当前日
+  var h = _date.getHours(); //获取小时
+  var m = _date.getMinutes(); //获取分钟
+  var s = _date.getSeconds() + _second; //获取秒
+  var newDate = new Date(year, mon, da, h, m, s);
+  return newDate;
+};var _default =
+
+{
+  formatTime: formatTime,
+  getDateYYYYMMDDHHMISS: getDateYYYYMMDDHHMISS,
+  addYear: addYear,
+  addMonth: addMonth,
+  addDay: addDay,
+  addHour: addHour,
+  addMinutes: addMinutes,
+  addSeconds: addSeconds,
+  getDate: getDate,
+  formatDate: formatDate };exports.default = _default;
+
+/***/ }),
+
+/***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7592,7 +8137,8 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -7622,7 +8168,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /*!*************************************************!*\
   !*** D:/web/uniApp/leasing-platform/pages.json ***!
   \*************************************************/
@@ -7632,532 +8179,33 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 11 */
-/*!*******************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/context/index.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-var _constant = _interopRequireDefault(__webpack_require__(/*! ../constant */ 12));
-var _factory = _interopRequireDefault(__webpack_require__(/*! ../factory */ 14));
-var _utils = _interopRequireDefault(__webpack_require__(/*! ../utils */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}var
-Context =
-function Context() {_classCallCheck(this, Context);};var _default =
-
-
-
-{
-  constant: _constant.default,
-  utils: _utils.default,
-  factory: _factory.default };exports.default = _default;
-
-/***/ }),
-/* 12 */
-/*!********************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/constant/index.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-var _urlConstant = _interopRequireDefault(__webpack_require__(/*! ./urlConstant.js */ 13));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
-                                                                                                                                                                      * @Descripttion: 静态变量输出接口
-                                                                                                                                                                      * @version: 
-                                                                                                                                                                      * @Author: huangziting
-                                                                                                                                                                      * @Date: 2020-06-02 09:00:32
-                                                                                                                                                                      * @LastEditTime: 2020-06-02 09:02:14
-                                                                                                                                                                      */var _default = { url: _urlConstant.default };exports.default = _default;
-
-/***/ }),
-/* 13 */
+/***/ 52:
 /*!**************************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/constant/urlConstant.js ***!
+  !*** D:/web/uniApp/leasing-platform/constant/AppConstant.js ***!
   \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /*
-                                                                                                      * @Descripttion: url常理
-                                                                                                      * @version: 
-                                                                                                      * @Author: huangziting
-                                                                                                      * @Date: 2020-06-02 09:02:48
-                                                                                                      * @LastEditTime: 2020-06-02 13:15:06
-                                                                                                      */
-// const baseUrl = 'https://app.demo.winqi.cn/'; 
-var baseUrl = '/';
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @Descripttion: 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @version: 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @Author: huangziting
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @Date: 2020-06-03 18:44:05
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     * @LastEditTime: 2020-06-03 18:48:07
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                     */var
+AppConstant = function AppConstant() {_classCallCheck(this, AppConstant);};_defineProperty(AppConstant, "appId",
 
 
-/**
-                    * 主页数据请求URL--开始: 
-                    */
-// 轮播图
-var carouselUrl = baseUrl + 'mock/carouse.json';
 
-/**
-                                                  * 主页数据请求URL--开始: 
-                                                  */var _default =
+"992020022270580001");_defineProperty(AppConstant, "appSecurity",
+"");var _default =
 
-{
-  carouselUrl: carouselUrl };exports.default = _default;
 
-/***/ }),
-/* 14 */
-/*!*******************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/factory/index.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-var _HttpFactory = _interopRequireDefault(__webpack_require__(/*! ./HttpFactory */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
-                                                                                                                                                                   * @Descripttion: 工厂类输出接口
-                                                                                                                                                                   * @version: 
-                                                                                                                                                                   * @Author: huangziting
-                                                                                                                                                                   * @Date: 2020-06-02 08:35:31
-                                                                                                                                                                   * @LastEditTime: 2020-06-02 08:57:17
-                                                                                                                                                                   */var _default = { http: _HttpFactory.default };exports.default = _default;
-
-/***/ }),
-/* 15 */
-/*!*************************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/factory/HttpFactory.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;} /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Descripttion: 重构uni-app请求方法
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @version: 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Author: huangziting
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @Date: 2020-06-02 08:35:47
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-06-02 13:13:34
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */var
-HttpFactory = /*#__PURE__*/function () {
-  function HttpFactory() {_classCallCheck(this, HttpFactory);}
-
-  // http get method
-  _createClass(HttpFactory, [{ key: "getSync", value: function getSync(_httpHeader, _url, _data) {
-      return new Promise(function (resolve, reject) {
-        uni.request({
-          url: _url,
-          method: 'GET',
-          header: _httpHeader,
-          data: _data,
-          success: function success(res) {
-            resolve(res);
-          },
-          fail: function fail(err) {
-            reject(err);
-          } });
-
-      });
-    }
-
-    // http post method
-  }, { key: "postSync", value: function postSync(_httpHeader, _url, _data) {
-      return new Promise(function (resolve, reject) {
-        uni.request({
-          url: _url,
-          method: 'POST',
-          header: _httpHeader,
-          data: _data,
-          success: function success(res) {
-            resolve(res);
-          },
-          fail: function fail(err) {
-            reject(err);
-          } });
-
-      });
-    } }]);return HttpFactory;}();var _default =
-
-
-new HttpFactory();exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 16 */
-/*!*****************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/utils/index.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-
-
-var _DateUtil = _interopRequireDefault(__webpack_require__(/*! ./DateUtil */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} /*
-                                                                                                                                                             * @Descripttion: 工具类输出接口
-                                                                                                                                                             * @version: 
-                                                                                                                                                             * @Author: huangziting
-                                                                                                                                                             * @Date: 2020-06-02 10:37:58
-                                                                                                                                                             * @LastEditTime: 2020-06-02 11:45:41
-                                                                                                                                                             */var _default = { date: _DateUtil.default };exports.default = _default;
-
-/***/ }),
-/* 17 */
-/*!********************************************************!*\
-  !*** D:/web/uniApp/leasing-platform/utils/DateUtil.js ***!
-  \********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /*
-                                                                                                      * @Descripttion: 时间工具类，访问通过Java110Context 去访问，请不要直接引入该文件
-                                                                                                      * @version: 
-                                                                                                      * @Author: huangziting
-                                                                                                      * @Date: 2020-06-02 10:39:55
-                                                                                                      * @LastEditTime: 2020-06-02 11:44:26
-                                                                                                      */
-
-
-/**
-                                                                                                          * @desc: 格式化时间
-                                                                                                          * @return: eg: '2018/04/09 21:31:00'
-                                                                                                          * @param {Date对象} date 
-                                                                                                          */
-var formatTime = function formatTime(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
-};
-
-/**
-    * @desc: 格式化日期
-    * @return: eg: '2018/04/09 21:31:00'
-    * @param {Date对象} date 
-    */
-var formatDate = function formatDate(date) {
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  return [year, month, day].map(formatNumber).join('-');
-};
-
-//字符串转日期格式，strDate要转为日期格式的字符串 
-var getDate = function getDate(strDate) {
-  var st = strDate;
-  var a = st.split(" "); //这个根据你的字符串决定，如果中间为T则改T
-
-  var b = a[0].split("-");
-  var c = a[1].split(":");
-  var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2]);
-  return date;
-};
-
-
-/**
-    * @desc: 格式化数字
-    * @return: n > 10 [eg: 12] => 12 | n < 10 [eg: 3] => '03'
-    * @param {*} n 
-    */
-var formatNumber = function formatNumber(n) {
-  n = n.toString();
-  return n[1] ? n : '0' + n;
-};
-
-var getDateYYYYMMDDHHMISS = function getDateYYYYMMDDHHMISS() {
-  var date = new Date();
-  var year = date.getFullYear();
-  var month = date.getMonth() + 1;
-  var day = date.getDate();
-  var hour = date.getHours();
-  var minute = date.getMinutes();
-  var second = date.getSeconds();
-
-  if (month < 10) {
-    month = '0' + month;
-  }
-
-  if (day < 10) {
-    day = '0' + day;
-  }
-
-  if (hour < 10) {
-    hour = '0' + hour;
-  }
-
-  if (minute < 10) {
-    minute = '0' + minute;
-  }
-
-  if (second < 10) {
-    second = '0' + second;
-  }
-
-  return year + "" + month + "" + day + "" + hour + "" + minute + "" + second;
-};
-
-var addYear = function addYear(_date, _year) {
-  var year = _date.getFullYear() + _year; //获取当前年份
-  var mon = _date.getMonth(); //获取当前月份
-  var da = _date.getDate(); //获取当前日
-  var h = _date.getHours(); //获取小时
-  var m = _date.getMinutes(); //获取分钟
-  var s = _date.getSeconds(); //获取秒
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};
-
-var addMonth = function addMonth(_date, _month) {
-  var year = _date.getFullYear(); //获取当前年份
-  var mon = _date.getMonth() + _month; //获取当前月份
-  var da = _date.getDate(); //获取当前日
-  var h = _date.getHours(); //获取小时
-  var m = _date.getMinutes(); //获取分钟
-  var s = _date.getSeconds(); //获取秒
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};
-
-var addDay = function addDay(_date, _day) {
-  var year = _date.getFullYear(); //获取当前年份
-
-
-  var mon = _date.getMonth(); //获取当前月份
-
-
-  var da = _date.getDate() + _day; //获取当前日
-
-
-  var h = _date.getHours(); //获取小时
-
-
-  var m = _date.getMinutes(); //获取分钟
-
-
-  var s = _date.getSeconds(); //获取秒
-
-
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};
-
-var addHour = function addHour(_date, _hour) {
-  var year = _date.getFullYear(); //获取当前年份
-
-
-  var mon = _date.getMonth(); //获取当前月份
-
-
-  var da = _date.getDate(); //获取当前日
-
-
-  var h = _date.getHours() + _hour; //获取小时
-
-
-  var m = _date.getMinutes(); //获取分钟
-
-
-  var s = _date.getSeconds(); //获取秒
-
-
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};
-
-var addMinutes = function addMinutes(_date, _minute) {
-  var year = _date.getFullYear(); //获取当前年份
-  var mon = _date.getMonth(); //获取当前月份
-  var da = _date.getDate(); //获取当前日
-  var h = _date.getHours(); //获取小时
-  var m = _date.getMinutes() + _minute; //获取分钟
-  var s = _date.getSeconds(); //获取秒
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};
-
-var addSeconds = function addSeconds(_date, _second) {
-  var year = _date.getFullYear(); //获取当前年份
-  var mon = _date.getMonth(); //获取当前月份
-  var da = _date.getDate(); //获取当前日
-  var h = _date.getHours(); //获取小时
-  var m = _date.getMinutes(); //获取分钟
-  var s = _date.getSeconds() + _second; //获取秒
-  var newDate = new Date(year, mon, da, h, m, s);
-  return newDate;
-};var _default =
-
-{
-  formatTime: formatTime,
-  getDateYYYYMMDDHHMISS: getDateYYYYMMDDHHMISS,
-  addYear: addYear,
-  addMonth: addMonth,
-  addDay: addDay,
-  addHour: addHour,
-  addMinutes: addMinutes,
-  addSeconds: addSeconds,
-  getDate: getDate,
-  formatDate: formatDate };exports.default = _default;
+AppConstant;exports.default = _default;
 
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

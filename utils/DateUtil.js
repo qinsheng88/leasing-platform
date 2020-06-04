@@ -1,11 +1,10 @@
 /*
- * @Descripttion: 时间工具类，访问通过Java110Context 去访问，请不要直接引入该文件
+ * @Descripttion: 时间工具类，访问通过Context 去访问，请不要直接引入该文件
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-02 10:39:55
- * @LastEditTime: 2020-06-02 11:44:26
+ * @LastEditTime: 2020-06-04 08:12:15
  */ 
-
 
 /**
  * @desc: 格式化时间
