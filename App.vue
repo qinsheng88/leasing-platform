@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-01 16:47:15
- * @LastEditTime: 2020-06-02 18:11:36
+ * @LastEditTime: 2020-06-04 17:35:47
 --> 
 <script>
 	export default {
@@ -21,4 +21,5 @@
 
 <style>
 	/*每个页面公共css */
+	@import './common/uni.css';
 </style>

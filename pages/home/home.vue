@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-01 18:52:08
- * @LastEditTime: 2020-06-04 13:35:55
+ * @LastEditTime: 2020-06-04 19:18:08
 --> 
 <template>
   <view>
@@ -67,24 +67,125 @@
     <!-- 分类 结束-->
 
     <!-- 资讯 开始 -->
-    <view class="">
-      
+    <view class="info-wrapper">
+      <view class="info-container">
+        <view class="info-image">
+          <image src="/static/images/info.png" >
+        </view>
+        <view class="info-spit"></view>
+        <view class="info-context">
+          <view class=""></view>
+          <view class=""></view>
+        </view>
+      </view>
     </view>
     <!-- 资讯 结束 -->
 
-     <!-- 好房优选 开始 -->
+    <!-- 好房优选 开始 -->
     <view class="rent-wrapper">
       <view class="rent-title-wrapper">
         <text class="rent-title">好房优选</text>
         <text class="rent-title-context">一手真实房源，最快，最新，享你所想！</text>
       </view>
       <view class="rent-container">
-        <image />
-        <view></view>
+        <scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+        </scroll-view>
       </view>
     </view>
     <!-- 好房优选 结束 -->
 
+    <!-- 好房优选 开始 -->
+    <view class="rent-wrapper">
+      <view class="rent-title-wrapper">
+        <text class="rent-title">集中式公寓</text>
+        <text class="rent-title-context">最优质的集中式公寓信息，都在这里！</text>
+      </view>
+      <view class="rent-container">
+        <scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+          <view class="scroll-view-item_H">
+            <view class="rent-image">
+              <image src="/static/images/house-demo.jpg">
+            </view>
+            <view class="rent-title">拱墅优质学区房</view>
+            <view class="rent-context">赢在起跑线</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <!-- 好房优选 结束 -->
+
+    <!-- <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+    	<swiper-item>
+    		<view class="swiper-item">hello1</view>
+    	</swiper-item>
+    	<swiper-item>
+    		<view class="swiper-item">hello</view>
+    	</swiper-item>
+    </swiper> -->
+	 
     <!-- 测试服务端数据 开始 -->
     <view>{{info}}</view>
     <!-- 测试服务端数据 结束 -->
@@ -109,7 +210,12 @@
         swiperCurrent: 0,
         swiperLength: 0,
 
-        info: ''
+        info: '',
+
+        scrollTop: 0,
+				old: {
+					scrollTop: 0
+				}
       }
     },
 
@@ -154,6 +260,28 @@
         this.titleNViewBackground = this.carouselList[index].background;
       },
       
+
+      upper: function(e) {
+				console.log(e)
+			},
+			lower: function(e) {
+				console.log(e)
+			},
+			scroll: function(e) {
+				console.log(e)
+				this.old.scrollTop = e.detail.scrollTop
+			},
+			goTop: function(e) {
+				// 解决view层不同步的问题
+				this.scrollTop = this.old.scrollTop
+				this.$nextTick(function() {
+					this.scrollTop = 0
+				});
+				uni.showToast({
+					icon:"none",
+					title:"纵向滚动 scrollTop 值已被修改为 0"
+				})
+			}
     }
   }
 </script>
@@ -224,7 +352,7 @@
 				height: 0;
 			}
 			.carousel{
-        box-shadow: 0 0 30px rgba($color: #1b9a1f, $alpha: 1.0);
+        box-shadow: 0 0 30px rgba($color: #17c72d, $alpha: 1.0);
 				.carousel-item{
 					padding: 0;
 				}
@@ -263,10 +391,47 @@
 		}
   }
   
+  // 资讯公告 开始
+  .info-wrapper {
+    height: 150rpx;
+    padding: 30rpx 40rpx;
+    .info-container {
+      height: 100%;
+      width: 100%;
+      background: rgba(255,255,255,1);
+      border-radius: 5px;
+      box-shadow: 0px 0px 3px 0px rgba(100, 57, 0, 0.19);
+      display: flex;
+      align-items: center;
+      justify-content: center ;
+
+      .info-spit {
+        width: 2rpx;
+        height: 60%;
+        background: rgba(242,242,242,1);
+        margin-left: 20rpx;
+      }
+      .info-image {
+        height: 100rpx;
+        background-color: #fff;
+        image {
+          width: 100rpx;
+          height: 100rpx;
+        }
+      }
+
+      .info-context {
+        width: 70%;
+        view {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  // 资讯公告 结束
+
   .rent-wrapper {
     padding: 0 32rpx;
-    background-color: #ccc;
-    margin-top: 40rpx;
     .rent-title-wrapper {
       .rent-title {
         font-size: 32rpx;
@@ -280,13 +445,50 @@
     }
 
     .rent-container {
-      img {
-        background-color: #fff;
+      .scroll-Y {
+        height: 200rpx;
       }
 
-      view {
-        background-color: #fff;
+      .scroll-view_H {
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .scroll-view-item {
+        height: 200rpx;
+        line-height: 200rpx;
+        text-align: center;
+        font-size: 36rpx;
+      }
+
+      .scroll-view-item_H {
+        margin-right: 10rpx;
+        border-radius: 5px;
+        display: inline-block;
+        width: 40%;
+        text-align: center;
+        font-size: 36rpx;
+        text-align: left;
+        padding-bottom: 20rpx;
+        padding-top: 10rpx;
+        .rent-image {
+          image {
+            height: 200rpx;
+            line-height: 200rpx;
+            width: 100%;
+          }
+        }
+        .rent-title {
+          font-size: 28rpx;
+          font-weight: 800;
+        }
+        .rent-context {
+          font-size: 24rpx;
+          color: #ccc;
+        }
       }
     }
-}
+  }
+
+  
 </style>

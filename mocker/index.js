@@ -3,13 +3,14 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-02 16:04:35
- * @LastEditTime: 2020-06-04 13:06:09
+ * @LastEditTime: 2020-06-04 14:56:41
  */ 
 
 // 使用 require 引入json文件，可以直接访问数据
 //const appData = require('../data.json')
 
 const proxy = {
+    
     'GET /api/login': {
         success: appData.login.success,
         message: appData.login.message
