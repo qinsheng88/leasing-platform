@@ -3,16 +3,12 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-01 18:52:08
- * @LastEditTime: 2020-06-04 19:18:08
+ * @LastEditTime: 2020-06-09 11:06:52
 --> 
 <template>
   <view>
     <!-- 头部轮播 开始-->
     <view class="carousel-section">
-      <!-- 标题栏和状态栏占位符 -->
-      <!-- <view class="titleNview-placing"></view> -->
-      <!-- 背景色区域 -->
-      <!-- <view class="titleNview-background" :style="{backgroundColor:titleNViewBackground}"></view> -->
       <swiper class="carousel" circular @change="swiperChange">
         <swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @click="navToDetailPage({title: '轮播广告'})">
           <image :src="item.src" />
@@ -30,16 +26,28 @@
     <!-- 分类 开始 -->
     <view class="cate-section">
       <view class="cate-item">
-        <image src="/static/images/grid-1.png"></image>
-        <text>租赁房源</text>
+        <view class="btn-area">
+          <navigator url="../notice/tzlist" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-1.png"></image>
+            <view>公示公告</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
-        <image src="/static/images/grid-2.png"></image>
-        <text>租赁机构</text>
+        <view class="btn-area">
+          <navigator url="../notice/hydtlist" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-2.png"></image>
+            <view>行业动态</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
-        <image src="/static/images/grid-3.png"></image>
-        <text>个人求租</text>
+        <view class="btn-area">
+          <navigator url="../person/rentmessage" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-3.png"></image>
+            <view>个人求租</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
         <image src="/static/images/grid-4.png"></image>
@@ -48,16 +56,28 @@
     </view>
     <view class="cate-section">
       <view class="cate-item">
-        <image src="/static/images/grid-10.png"></image>
-        <text>机构榜单</text>
+        <view class="btn-area">
+          <navigator url="../notice/mechanism" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-10.png"></image>
+            <view>机构榜单</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
-        <image src="/static/images/grid-7.png"></image>
-        <text>政策法规</text>
+        <view class="btn-area">
+          <navigator url="../notice/zclist" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-7.png"></image>
+            <view>政策法规</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
-        <image src="/static/images/grid-8.png"></image>
-        <text>投诉咨询</text>
+        <view class="btn-area">
+          <navigator url="../notice/webcomplaintslist" open-type="redirect" hover-class="other-navigator-hover">
+            <image src="/static/images/grid-8.png"></image>
+            <view>投诉咨询</view>
+          </navigator>
+        </view>
       </view>
       <view class="cate-item">
         <image src="/static/images/grid-9.png"></image>
@@ -74,8 +94,32 @@
         </view>
         <view class="info-spit"></view>
         <view class="info-context">
-          <view class=""></view>
-          <view class=""></view>
+          <view class="info-lead">
+            <text class="info-lead-title">头条</text>
+            <text class="info-lead-context">最高资助20万 这2类人有福了</text>
+          </view>
+          <view class="info-context-swiper">
+            <swiper :autoplay="true" :interval="3000" :duration="1000" :vertical="true" class="info-swiper-context">
+              <swiper-item>
+                <view class="swiper-item">
+                    <text class="swiper-item-title">要闻</text>
+                    <text class="swiper-item-content">最高资助20万 这2类人有福了</text>
+                </view>
+              </swiper-item>
+              <swiper-item>
+                <view class="swiper-item">
+                    <text class="swiper-item-title">要闻</text>
+                    <text class="swiper-item-content">最高资助20万 这2类人有福了</text>
+                </view>
+              </swiper-item>
+              <swiper-item>
+                <view class="swiper-item">
+                    <text class="swiper-item-title">要闻</text>
+                    <text class="swiper-item-content">最高资助20万 这2类人有福了最高资助20万 这2类人有福了</text>
+                </view>
+              </swiper-item>
+            </swiper>
+          </view>
         </view>
       </view>
     </view>
@@ -84,45 +128,26 @@
     <!-- 好房优选 开始 -->
     <view class="rent-wrapper">
       <view class="rent-title-wrapper">
-        <text class="rent-title">好房优选</text>
+        <text class="rent-title">租赁挂牌</text>
         <text class="rent-title-context">一手真实房源，最快，最新，享你所想！</text>
       </view>
       <view class="rent-container">
         <scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
+          <view class="rent-context">
+            <view class="scroll-view-item" v-for="item in rentList" :key="item.id" @click="toDetail(item.id)">
+              <view class="rent-image">
+                <image :src="item.imgSrc">
+              </view>
+              <view class="rent-info">
+                <view class="rent-title">
+                  {{item.community_name}}
+                    <image src="/static/images/cert-light.png" :class="{'rent-title-cert': !!item.id}"/>
+                </view>
+                <view class="rent-code">统一编码：{{item.gov_house_number}}</view>
+                <view class="rent-context">{{item.location_name + '  ' + item.room_num + '室   ' + item.space + "㎡"}}</view>
+                <view class="rent-price">{{item.rent_price + '元/月'}}</view>
+              </view>
             </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
           </view>
         </scroll-view>
       </view>
@@ -137,60 +162,26 @@
       </view>
       <view class="rent-container">
         <scroll-view class="scroll-view_H" scroll-x="true" @scroll="scroll" scroll-left="0">
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
+          <view class="rent-context">
+            <view class="scroll-view-item" v-for="item in flatsList" :key="item.id" @click="toDetail(item.id)" >
+              <view class="rent-image">
+                <image :src="item.imgSrc">
+              </view>
+              <view class="rent-info">
+                <view class="rent-title">
+                  {{item.community_name}}
+                    <image src="/static/images/cert-light.png" :class="{'rent-title-cert': !!item.id}"/>
+                </view>
+                <view class="rent-code">统一编码：{{item.gov_house_number}}</view>
+                <view class="rent-context">{{item.location_name + '  ' + item.room_num + '室   ' + item.space + "㎡"}}</view>
+                <view class="rent-price">{{item.rent_price + '元/月'}}</view>
+              </view>
             </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
-          </view>
-          <view class="scroll-view-item_H">
-            <view class="rent-image">
-              <image src="/static/images/house-demo.jpg">
-            </view>
-            <view class="rent-title">拱墅优质学区房</view>
-            <view class="rent-context">赢在起跑线</view>
           </view>
         </scroll-view>
       </view>
     </view>
     <!-- 好房优选 结束 -->
-
-    <!-- <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-    	<swiper-item>
-    		<view class="swiper-item">hello1</view>
-    	</swiper-item>
-    	<swiper-item>
-    		<view class="swiper-item">hello</view>
-    	</swiper-item>
-    </swiper> -->
-	 
-    <!-- 测试服务端数据 开始 -->
-    <view>{{info}}</view>
-    <!-- 测试服务端数据 结束 -->
-
-
   </view>
 </template>
 
@@ -209,31 +200,50 @@
         titleNViewBackground: '',
         swiperCurrent: 0,
         swiperLength: 0,
-
-        info: '',
-
         scrollTop: 0,
 				old: {
 					scrollTop: 0
-				}
+        },
+        rentList: [],
+        flatsList: []
+    
       }
     },
 
     onLoad() {
-      //this.loadDataDemo();
+      this.getRentList();
       this.getCarouselList();
     },
     
     methods: {
 
       // 请求数据DEMO
-      loadDataDemo() {
+      getRentList() {
         let url = '/api/FanChan/FYXXB/GetPageListAllSearch_fyzs'
         http.get(url, {
           pagination: {"page": 1,"rows": 10,"sidx":"up_at", "sord":"desc"},
           queryJson: {"status": 1,"category": 2,"up_status": 2}
         }).then((res) => {
-          this.info = res.data.info
+          let list = res.data.data.rows
+          if(list && list.length != 0) {
+
+            let tempList = []
+            for (let i = 0; i < list.length; i++) {
+              const item  = list[i]
+              let imgList = JSON.parse(item.house_other)
+              let imgSrc  = imgList[0].host + imgList[0].src
+              item.imgSrc = imgSrc
+              tempList.push(item)
+            }
+
+            this.rentList = tempList.filter((item)=>{
+              return item.rent_type == 1
+            });
+
+            this.flatsList = tempList.filter((item) => {
+              return item.rent_type == 2
+            })
+          }
         }).catch((err) => {
           console.log(err)
         })
@@ -242,7 +252,7 @@
       // 获取轮播图数据
       getCarouselList() {
         let url = '/api/carouseList'
-        http.get(url, {})
+        http.get(url)
           .then((res) => {
             this.carouselList = res.data.carouse
             this.titleNViewBackground = this.carouselList[0].background;
@@ -260,17 +270,14 @@
         this.titleNViewBackground = this.carouselList[index].background;
       },
       
+      upper: function(e) {},
 
-      upper: function(e) {
-				console.log(e)
-			},
-			lower: function(e) {
-				console.log(e)
-			},
+      lower: function(e) {},
+      
 			scroll: function(e) {
-				console.log(e)
 				this.old.scrollTop = e.detail.scrollTop
-			},
+      },
+      
 			goTop: function(e) {
 				// 解决view层不同步的问题
 				this.scrollTop = this.old.scrollTop
@@ -281,7 +288,14 @@
 					icon:"none",
 					title:"纵向滚动 scrollTop 值已被修改为 0"
 				})
-			}
+      },
+      
+      // 租房详情
+      toDetail(value) {
+        uni.navigateTo({
+          url: '/pages/detail/detail?keyValue=' + value
+        })
+      }
     }
   }
 </script>
@@ -412,6 +426,7 @@
         margin-left: 20rpx;
       }
       .info-image {
+        margin-left: 40rpx;
         height: 100rpx;
         background-color: #fff;
         image {
@@ -421,14 +436,65 @@
       }
 
       .info-context {
-        width: 70%;
-        view {
-          background-color: #fff;
+        height: 100%;
+        width: 100%;
+        padding: 20rpx 20rpx;
+        box-sizing: border-box;
+        .info-lead {
+          .info-lead-title {
+            width: 80rpx;
+            height: 40rpx;
+            line-height: 40rpx;
+            color: #B68545;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid #B68545;
+            border-radius: 20rpx;
+          }
+
+          .info-lead-context {
+            margin-left: 10rpx;
+            font-size: 24rpx;
+            text-overflow:ellipsis;
+            overflow: hidden;
+          }
         }
+        .info-context-swiper{
+          margin-top: 20rpx;
+          .info-swiper-context{
+            height: 60rpx;
+            margin-top: 10rpx;
+            .swiper-item-title {
+              width: 80rpx;
+              height: 40rpx;
+              line-height: 40rpx;
+              color: #B68545;
+              display: inline-block;
+              text-align: center;
+              border: 1px solid #B68545;
+              border-radius: 20rpx;
+            }
+            .swiper-item-content {
+              margin-left: 10rpx;
+              font-size: 24rpx;
+              width: 100%;
+              overflow: hidden;
+              text-overflow:ellipsis;
+            }
+          }
+        }
+
       }
     }
   }
   // 资讯公告 结束
+
+  // 隐藏scrollbar
+  scroll-view ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background-color: transparent;
+  }
 
   .rent-wrapper {
     padding: 0 32rpx;
@@ -454,37 +520,53 @@
         width: 100%;
       }
 
-      .scroll-view-item {
-        height: 200rpx;
-        line-height: 200rpx;
-        text-align: center;
-        font-size: 36rpx;
-      }
-
-      .scroll-view-item_H {
-        margin-right: 10rpx;
-        border-radius: 5px;
-        display: inline-block;
-        width: 40%;
-        text-align: center;
-        font-size: 36rpx;
-        text-align: left;
-        padding-bottom: 20rpx;
-        padding-top: 10rpx;
-        .rent-image {
-          image {
-            height: 200rpx;
-            line-height: 200rpx;
-            width: 100%;
+      .rent-context {
+        display: flex;
+        .scroll-view-item {
+          display: flex;
+          margin-right: 10rpx;
+          border-radius: 5px;
+          width: 300px;
+          font-size: 36rpx;
+          text-align: left;
+          padding: 10rpx 20rpx;
+          border: 1px solid #f5f5f5;
+          background: rgba(255,255,255,1);
+          box-shadow: 0px 0px 8px rgba(241, 238, 233, 0.19);
+          .rent-image {
+            image {
+              height: 200rpx;
+              line-height: 200rpx;
+              width: 230rpx;
+            }
           }
-        }
-        .rent-title {
-          font-size: 28rpx;
-          font-weight: 800;
-        }
-        .rent-context {
-          font-size: 24rpx;
-          color: #ccc;
+          .rent-info {
+            width: 300rpx;
+            padding: 10rpx 20rpx;
+            .rent-title {
+              font-size: 28rpx;
+              font-weight: 800;
+              .rent-title-cert {
+                margin-left:3px;
+                vertical-align:middle;
+                height:18px; 
+                width:18px;
+                margin-bottom: 2px;
+              }
+            }
+            .rent-code {
+              font-size: 24rpx;
+              color: #ccc;
+            }
+            .rent-context{
+              font-size: 24rpx;
+              color: #ccc;
+            }
+            .rent-price {
+              font-size: 36rpx;
+              color: #f66;
+            }
+          }
         }
       }
     }

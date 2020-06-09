@@ -4,7 +4,8 @@
     "pages/trends/trends",
     "pages/taskCenter/taskCenter",
     "pages/message/message",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/detail/detail"
   ],
   "subPackages": [],
   "window": {

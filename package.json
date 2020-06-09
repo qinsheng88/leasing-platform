@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "js-md5": "^0.7.3",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "async-validator": "^3.3.0",
     "webpack-api-mocker": "^1.7.6"
   }
 }

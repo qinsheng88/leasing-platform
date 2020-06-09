@@ -3,7 +3,7 @@
  * @version: 
  * @Author: huangziting
  * @Date: 2020-06-02 16:00:45
- * @LastEditTime: 2020-06-04 13:08:38
+ * @LastEditTime: 2020-06-05 19:23:34
  */ 
 const webpackApiMocker = require('webpack-api-mocker')
 const path = require('path') //PS 运行路径：'D:\software\HBuilderX\plugins\uniapp-cli\mocker\index.js'

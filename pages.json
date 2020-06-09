@@ -5,32 +5,44 @@
 			"style": {
 				"navigationBarTitleText": "南宁租赁平台"
 			}
-		},
-		{
+		},{
 			"path": "pages/trends/trends",
 			"style": {
 				"navigationBarTitleText": "动态"
 			}
-		},
-		{
+		},{
 			"path": "pages/taskCenter/taskCenter",
 			"style": {
 				"navigationBarTitleText": "任务中心"
 			}
-		},
-		{
+		},{
 			"path": "pages/message/message",
 			"style": {
 				"navigationBarTitleText": "消息"
 			}
-		},
-		{
+		},{
 			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		},{
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": "租房详情"
+			}
+		},{
+				"path" : "pages/register/register",
+				"style" : {
+					"navigationBarTitleText": "注册"
+				}
 		}
-	],
+		,{
+				"path" : "pages/login/login",
+				"style" : {
+					"navigationBarTitleText": "登录"
+				}
+		}
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
